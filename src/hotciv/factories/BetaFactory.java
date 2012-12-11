@@ -8,6 +8,7 @@ import hotciv.different.AlphaWorldLayoutStrategy;
 import hotciv.different.BetaWinnerStrategy;
 import hotciv.different.BetaWorldAgingStrategy;
 import hotciv.framework.Game;
+import hotciv.standard.SpyPrint;
 import hotciv.strategies.AttackingStrategy;
 import hotciv.strategies.PopulationStrategy;
 import hotciv.strategies.ProductionStrategy;
@@ -20,7 +21,7 @@ public class BetaFactory implements AbstractFactory {
 
 	@Override
 	public AttackingStrategy makeAttackStrategy(Game game) {
-		return new AlphaAttackStrategy(game);
+		return new AlphaAttackStrategy(game, new SpyPrint());
 	}
 
 	@Override

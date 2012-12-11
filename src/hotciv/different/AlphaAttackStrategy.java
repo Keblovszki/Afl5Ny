@@ -2,13 +2,16 @@ package hotciv.different;
 
 import hotciv.framework.Game;
 import hotciv.framework.Position;
+import hotciv.framework.Print;
 import hotciv.strategies.AttackingStrategy;
 
 public class AlphaAttackStrategy implements AttackingStrategy{
 	private Game game;
+	private Print p;
 	
-	public AlphaAttackStrategy(Game game) {
+	public AlphaAttackStrategy(Game game, Print print) {
 		this.game = game;
+		p = print;
 	}
 	
 	@Override

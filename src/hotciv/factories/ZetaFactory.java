@@ -10,6 +10,7 @@ import hotciv.different.EpsilonWinnerStrategy;
 import hotciv.different.TestWorldLayoutStrategy;
 import hotciv.different.ZetaWinnerStrategy;
 import hotciv.framework.Game;
+import hotciv.standard.SpyPrint;
 import hotciv.strategies.AttackingStrategy;
 import hotciv.strategies.PopulationStrategy;
 import hotciv.strategies.ProductionStrategy;
@@ -22,7 +23,7 @@ public class ZetaFactory implements AbstractFactory {
 
 	@Override
 	public AttackingStrategy makeAttackStrategy(Game game) {
-		return new AlphaAttackStrategy(game);
+		return new AlphaAttackStrategy(game, new SpyPrint());
 	}
 
 	@Override
