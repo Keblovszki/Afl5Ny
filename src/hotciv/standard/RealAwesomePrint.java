@@ -13,6 +13,24 @@ public class RealAwesomePrint implements Print {
 	@Override
 	public int countPrints() {
 		//do ntohginknlekdn.. (Du fandt mig - jeg er nissen)
+//		
+//        {_}
+//        / \
+//       /   \
+//      /_____\
+//    {`_______`}
+//     // . . \\
+//    (/(__7__)\)
+//    |'-' = `-'|
+//    |         |
+//    /\       /\
+//   /  '.   .'  \
+//  /_/   `"`   \_\
+// {__}###[_]###{__}
+// (_/\_________/\_)
+//     |___|___|
+//      |--|--|
+//     (__)`(__)
 		return 0;
 	}
 
