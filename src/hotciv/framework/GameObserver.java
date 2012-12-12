@@ -42,10 +42,4 @@ public interface GameObserver {
    */
   public void tileFocusChangedAt(Position position);
 
-	/**
-	 * add an observer in this game instance. The game instance acts as
-	 * 'subject' in the pattern.
-	 * @param observer the observer to notify in case of state changes.
-	 */
-	public void addObserver(GameObserver observer);
 }

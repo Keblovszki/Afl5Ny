@@ -2,6 +2,7 @@ package hotciv.standard;
 
 import hotciv.framework.City;
 import hotciv.framework.Game;
+import hotciv.framework.GameObserver;
 import hotciv.framework.Player;
 import hotciv.framework.Position;
 import hotciv.framework.Print;
@@ -144,5 +145,11 @@ public class LogDec implements Game {
 	@Override
 	public int getRounds() {
 		return this.game.getRounds();
+	}
+
+	@Override
+	public void addObserver(GameObserver observer) {
+		// Do nothing
+		
 	}
 }

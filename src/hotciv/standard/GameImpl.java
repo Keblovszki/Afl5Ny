@@ -3,6 +3,7 @@ package hotciv.standard;
 import hotciv.factories.AbstractFactory;
 import hotciv.framework.City;
 import hotciv.framework.Game;
+import hotciv.framework.GameObserver;
 import hotciv.framework.Player;
 import hotciv.framework.Position;
 import hotciv.framework.Tile;
@@ -15,6 +16,7 @@ import hotciv.strategies.WinnerStrategy;
 import hotciv.strategies.WorldAgingStrategy;
 import hotciv.strategies.WorldLayoutStrategy;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -38,6 +40,7 @@ public class GameImpl implements Game {
 	private HashMap<Position, City> mapCity;
 	private HashMap<Position, Unit> mapUnit;
 	private HashMap<Position, Tile> mapTile;
+	private ArrayList<GameObserver> observerList;
 	public int attackConterRED = 0;
 	public int attackCounterBLUE = 0;
 	private WorldAgingStrategy worldAgingStrategy;
@@ -54,6 +57,7 @@ public class GameImpl implements Game {
 		setMapCity(new HashMap<Position, City>());
 		setMapUnit(new HashMap<Position, Unit>());
 		setMapTile(new HashMap<Position, Tile>());
+		observerList = new ArrayList<GameObserver>(); 
 
 		winnerStrategy = abstractFactory.makeWinnerStrategy(this);
 		worldAgingStrategy = abstractFactory.makeWorldAgingStrategy(this);
@@ -111,12 +115,10 @@ public class GameImpl implements Game {
 		getMapUnit().put(to, getMapUnit().get(from));
 		getMapUnit().remove(from);
 		if (getMapCity().get(to) != null) {
-			if (getMapCity().get(to).getOwner() == getMapUnit().get(to).getOwner()) {
-				return true;
-			} else {
+			if (getMapCity().get(to).getOwner() != getMapUnit().get(to).getOwner()) {
 				getMapCity().get(to).setOwner(getMapUnit().get(to).getOwner());
-				return true;
-			}
+			} 
+			return true;
 		}
 		return false;
 	}
@@ -150,7 +152,9 @@ public class GameImpl implements Game {
 	public void endOfTurn() {
 		if (playerInTurn == Player.RED) {
 			playerInTurn = Player.BLUE;
-		} else {
+			notifyTurnEndsObservers(playerInTurn, age);
+		} 
+		else {
 			age = worldAgingStrategy.worldAging(age);
 			playerInTurn = Player.RED;
 			for(Entry<Position, City> entry : mapCity.entrySet()){
@@ -159,6 +163,7 @@ public class GameImpl implements Game {
 				populationStrategy.increasePopulation(p);
 			}
 			round += 1;
+			notifyTurnEndsObservers(playerInTurn, age);
 		}
 	}
 
@@ -235,4 +240,28 @@ public class GameImpl implements Game {
 	public void setMapTile(HashMap<Position, Tile> mapTile) {
 		this.mapTile = mapTile;
 	}
+
+	@Override
+	public void addObserver(GameObserver observer) {
+		observerList.add(observer);
+	}
+	
+	private void notifyWorldChangeObservers(Position pos) {
+		for (GameObserver o : observerList) {
+			o.worldChangedAt(pos);
+		}
+	}
+	
+	private void notifyTurnEndsObservers(Player nextPlayer, int age) {
+		for (GameObserver o : observerList) {
+			o.turnEnds(nextPlayer, age);
+		}
+	}
+	
+	private void notifyTileFocusObservers(Position position) {
+		for (GameObserver o : observerList) {
+			o.tileFocusChangedAt(position);
+		}
+	}
+
 }
