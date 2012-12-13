@@ -6,22 +6,39 @@ import hotciv.framework.Position;
 
 public class TestStubObserver implements GameObserver {
 
+	private int worldChangeAtCount;
+	private int turnEndsCount;
+	private int tileFocusChangeAtCount;
+	
+	public TestStubObserver() {
+		worldChangeAtCount = 0;
+		turnEndsCount = 0;
+		tileFocusChangeAtCount = 0;
+	}
 	@Override
 	public void worldChangedAt(Position pos) {
-		// TODO Auto-generated method stub
-
+		worldChangeAtCount++;
 	}
 
 	@Override
 	public void turnEnds(Player nextPlayer, int age) {
-		// TODO Auto-generated method stub
-
+		turnEndsCount++;
 	}
 
 	@Override
 	public void tileFocusChangedAt(Position position) {
-		// TODO Auto-generated method stub
-
+		tileFocusChangeAtCount++;
 	}
-
+	
+	public int getWorldChangeAtCount() {
+		return worldChangeAtCount;
+	}
+	
+	public int getTurnEndsCount() {
+		return turnEndsCount;
+	}
+	
+	public int getTileFocusChangeAtCount() {
+		return tileFocusChangeAtCount;
+	}
 }

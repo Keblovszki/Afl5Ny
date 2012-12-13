@@ -114,12 +114,13 @@ public class GameImpl implements Game {
 		}
 		getMapUnit().put(to, getMapUnit().get(from));
 		getMapUnit().remove(from);
+		notifyWorldChangeObservers(to);
+		notifyWorldChangeObservers(from);
 		if (getMapCity().get(to) != null) {
 			if (getMapCity().get(to).getOwner() != getMapUnit().get(to).getOwner()) {
 				getMapCity().get(to).setOwner(getMapUnit().get(to).getOwner());
 			} 
-			notifyWorldChangeObservers(to);
-			notifyWorldChangeObservers(from);
+			
 			return true;
 		}
 		return false;
