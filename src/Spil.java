@@ -18,7 +18,7 @@ public class Spil {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		GameImpl game = new GameImpl(new AlphaFactory());
+		Game game = new GameImpl(new AlphaFactory());
 
 		DrawingEditor editor = new MiniDrawApplication("Paint the HotCiv world map...", new HotCivFactory(game));
 		editor.open();
