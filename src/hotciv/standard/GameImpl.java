@@ -118,6 +118,8 @@ public class GameImpl implements Game {
 			if (getMapCity().get(to).getOwner() != getMapUnit().get(to).getOwner()) {
 				getMapCity().get(to).setOwner(getMapUnit().get(to).getOwner());
 			} 
+			notifyWorldChangeObservers(to);
+			notifyWorldChangeObservers(from);
 			return true;
 		}
 		return false;
@@ -135,6 +137,8 @@ public class GameImpl implements Game {
 					attackCounterBLUE += 1;
 				}
 			}
+			notifyWorldChangeObservers(to);
+			notifyWorldChangeObservers(from);
 			return rota;
 		}
 		return false;
@@ -179,31 +183,37 @@ public class GameImpl implements Game {
 	@Override
 	public void changeWorkForceFocusInCityAt(Position p, String balance) {
 		getMapCity().get(p).setWorkforceFocus(balance);
+		notifyTileFocusObservers(p);
 	}
 
 	@Override
 	public void changeProductionInCityAt(Position p, String unitType) {
 		getMapCity().get(p).setProduction(unitType);
+		notifyTileFocusObservers(p);
 	}
 
 	@Override
 	public void performUnitActionAt(Position p) {
 		Unit u = getMapUnit().get(p);
 		unitActionStrategy.performUnitActionAt(u, p);
+		notifyTileFocusObservers(p);
 	}
 
 	@Override
 	public void createProductionInCityAt(Position p) {
 		productionStrategy.createProductionInCityAt(p);
+		notifyTileFocusObservers(p);
 	}
 
 	public void removeUnit(Position p) {
 		getMapUnit().remove(p);
+		notifyWorldChangeObservers(p);
 	}
 
 	@Override
 	public void addCity(Position p, Player owner) {
 		getMapCity().put(p, new CityImpl(owner));
+		notifyWorldChangeObservers(p);
 	}
 
 	@Override
