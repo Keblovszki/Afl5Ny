@@ -33,6 +33,10 @@ public class Position {
 	protected int r;
 	protected int c;
 
+	public boolean inWorld() {
+		return !((getColumn() < 0) || (getColumn() >= GameConstants.WORLDSIZE) || (getRow() < 0) || (getRow() >= GameConstants.WORLDSIZE));
+	}
+
 	/**
 	 * get the row represented by this position.
 	 * 
@@ -74,35 +78,35 @@ public class Position {
 	public Position getWest() {
 		return new Position(getRow(), getColumn() + 1);
 	}
-	
+
 	public Position getEast() {
 		return new Position(getRow(), getColumn() - 1);
 	}
-	
+
 	public Position getNorth() {
 		return new Position(getRow() - 1, getColumn());
 	}
-	
+
 	public Position getSouth() {
 		return new Position(getRow() + 1, getColumn());
 	}
-	
+
 	public Position getNorthEast() {
 		return new Position(getRow() - 1, getColumn() - 1);
 	}
-	
+
 	public Position getNorthWest() {
 		return new Position(getRow() - 1, getColumn() + 1);
 	}
-	
+
 	public Position getSouthWest() {
 		return new Position(getRow() + 1, getColumn() + 1);
 	}
-	
+
 	public Position getSouthEast() {
 		return new Position(getRow() + 1, getColumn() - 1);
 	}
-	
+
 	public ArrayList<Position> getNeighbours() {
 		final Position south = this.getSouth();
 		final Position north = this.getNorth();
@@ -113,7 +117,7 @@ public class Position {
 		final Position northWest = this.getNorthWest();
 		final Position northEast = this.getNorthEast();
 		final ArrayList<Position> aroundTheCity = new ArrayList<Position>();
-		
+
 		aroundTheCity.add(this);
 		aroundTheCity.add(north);
 		aroundTheCity.add(northEast);
@@ -123,7 +127,7 @@ public class Position {
 		aroundTheCity.add(southWest);
 		aroundTheCity.add(west);
 		aroundTheCity.add(northWest);
-		
+
 		return aroundTheCity;
 	}
 }
