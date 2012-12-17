@@ -1,9 +1,8 @@
-package hotciv.visual;
+package hotciv.view;
 
 import hotciv.framework.Game;
 import hotciv.framework.Position;
 import hotciv.framework.Unit;
-import hotciv.view.GfxConstants;
 
 import java.awt.event.MouseEvent;
 

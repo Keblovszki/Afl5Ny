@@ -200,4 +200,10 @@ public class StubGame1 implements Game {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public void setTileFokus(Position p) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -4,6 +4,7 @@ import hotciv.factories.AlphaFactory;
 import hotciv.framework.Game;
 import hotciv.standard.GameImpl;
 import hotciv.view.EndTurnTool;
+import hotciv.view.MoveUnitTool;
 import minidraw.framework.DrawingEditor;
 import minidraw.standard.MiniDrawApplication;
 

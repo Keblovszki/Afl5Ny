@@ -274,4 +274,12 @@ public class GameImpl implements Game {
 		}
 	}
 
+	@Override
+	public void setTileFokus(Position p) {
+		//City c = getCityAt(p);
+		//if (c != null) {
+			notifyTileFocusObservers(p);
+		//}
+	}
+
 }

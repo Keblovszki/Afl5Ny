@@ -159,5 +159,7 @@ public interface Game {
 	 * 'subject' in the pattern.
 	 * @param observer the observer to notify in case of state changes.
 	 */
-	public void addObserver(GameObserver observer);
+  public void addObserver(GameObserver observer);
+  
+  public void setTileFokus(Position p);
 }

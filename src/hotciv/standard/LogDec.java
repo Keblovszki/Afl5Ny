@@ -152,4 +152,10 @@ public class LogDec implements Game {
 		// Do nothing
 		
 	}
+
+	@Override
+	public void setTileFokus(Position p) {
+		// TODO Auto-generated method stub
+		
+	}
 }

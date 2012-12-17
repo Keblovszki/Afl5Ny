@@ -23,7 +23,7 @@ public class GameDrawing extends StandardDrawing implements Drawing, GameObserve
 	private ImageFigure shieldIconShift;
 	private TextFigure textFigureAge;
 	private TextFigure moveCountText;
-	private UnitFigure cityProductionIcon;
+	private ImageFigure cityProductionIcon;
 	private ImageFigure workForceFocusIcon;
 	protected Game game;
 	protected HashMap<City, CityFigure> cityMap = null;
@@ -151,8 +151,9 @@ public class GameDrawing extends StandardDrawing implements Drawing, GameObserve
 		}
 
 		String production = c.getProduction();
-		cityProductionIcon = new UnitFigure(production, new Point(GfxConstants.CITY_PRODUCTION_X,
-				GfxConstants.CITY_PRODUCTION_Y), new Unit() {
+		cityProductionIcon = new ImageFigure(production, new Point(GfxConstants.CITY_PRODUCTION_X,
+				GfxConstants.CITY_PRODUCTION_Y)
+			/*, new Unit() {
 
 			@Override
 			public String getTypeString() {
@@ -199,7 +200,8 @@ public class GameDrawing extends StandardDrawing implements Drawing, GameObserve
 			public ArrayList<Unit> getUnitsAround(Position p) {
 				return null;
 			}
-		});
+		}*/
+		);
 		
 		super.add(cityProductionIcon);
 		String focus = c.getWorkforceFocus();
