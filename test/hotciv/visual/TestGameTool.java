@@ -2,6 +2,7 @@ package hotciv.visual;
 
 import hotciv.factories.GammaFactory;
 import hotciv.framework.Game;
+import hotciv.framework.GameConstants;
 import hotciv.framework.Position;
 import hotciv.standard.GameImpl;
 
@@ -15,6 +16,10 @@ public class TestGameTool {
 	
 	public static void main(String[] args) {
 		Game game = new GameImpl(new GammaFactory());
+		game.getCityAt(new Position(1, 1)).setProduction(GameConstants.ARCHER);
+		game.getCityAt(new Position(1, 1)).setWorkforceFocus(GameConstants.productionFocus);
+		game.getCityAt(new Position(4,1)).setWorkforceFocus(GameConstants.foodFocus);
+		game.getCityAt(new Position(4,1)).setProduction(GameConstants.SETTLER);
 		
 		DrawingEditor editor = new MiniDrawApplication("Hannibal er sej", new GameFactory(game));
 		
