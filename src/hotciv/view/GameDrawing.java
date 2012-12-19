@@ -152,56 +152,7 @@ public class GameDrawing extends StandardDrawing implements Drawing, GameObserve
 
 		String production = c.getProduction();
 		cityProductionIcon = new ImageFigure(production, new Point(GfxConstants.CITY_PRODUCTION_X,
-				GfxConstants.CITY_PRODUCTION_Y)
-			/*, new Unit() {
-
-			@Override
-			public String getTypeString() {
-				//ligegyldigt, bare vi har farven på owneren..
-				return GameConstants.ARCHER;
-			}
-
-			@Override
-			public Player getOwner() {
-				return c.getOwner();
-			}
-
-			@Override
-			public int getMoveCount() {
-				return 0;
-			}
-
-			@Override
-			public int getDefensiveStrength() {
-				return 0;
-			}
-
-			@Override
-			public int getAttackingStrength() {
-				return 0;
-			}
-
-			@Override
-			public void increaseBonusDefenseStrength(int bonusStrength) {
-				
-			}
-
-			@Override
-			public void setIsNotFortify(boolean fortify) {
-				
-			}
-
-			@Override
-			public boolean isNotArcherFortify() {
-				return false;
-			}
-
-			@Override
-			public ArrayList<Unit> getUnitsAround(Position p) {
-				return null;
-			}
-		}*/
-		);
+				GfxConstants.CITY_PRODUCTION_Y));
 		
 		super.add(cityProductionIcon);
 		String focus = c.getWorkforceFocus();
